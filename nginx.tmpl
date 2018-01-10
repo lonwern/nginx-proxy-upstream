@@ -1,0 +1,11 @@
+upstream ${VIRTUAL_HOST} {
+	server ${UPSTREAM};
+}
+server {
+	server_name ${VIRTUAL_HOST};
+	listen 80;
+	access_log /var/log/nginx/access.log main;
+	location / {
+		proxy_pass http://${VIRTUAL_HOST};
+	}
+}
